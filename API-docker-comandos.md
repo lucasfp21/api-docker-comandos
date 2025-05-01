@@ -41,10 +41,11 @@
                 }
             }
 
-    * chamada de criacao expondo a porta
-        curl --unix-socket /var/run/docker.sock -d @chamada.json -H "Content-Type: application/json" http>//localhost/containers/create
+* chamada de criacao expondo a porta
+    curl --unix-socket /var/run/docker.sock -d @chamada.json -H "Content-Type: application/json" http>//localhost/containers/create
 
-        * 0 @ passa um arquivo
+    * O @ passa um arquivo
+
 #### apos a criacao entao startamos o container
         curl --unix-socket /var/run/docker.sock -X POST http://localhost/containers/<id>/start
         curl --unix-socket /var/run/docker.sock -X POST http://localhost/containers/<id>/stop
