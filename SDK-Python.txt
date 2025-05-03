@@ -1,0 +1,47 @@
+SDK Python
+
+Primeiro baixar o python (e o PIP)
+Depois baixar o virtualenv
+
+Iniciar o virtualenv
+    virtualenv <nome do ambiente>
+
+Ativar o ambiente
+    source <nome do ambiente>/bin/activate
+
+Criar um index.py
+Instalar o SDK do docker 
+    pip install docker
+
+---
+
+# rodar container compartilhando o docker.sock
+docker container run -it -v /var/run/docker.sock:/var/run/docker.sock ubuntu /bin/bash
+
+# rodando container nginx via API do Docker
+curl --unix-socket /var/run/docker.sock -X POST http://localhost/images/create?fromImage=nginx:latest
+curl --unix-socket /var/run/docker.sock -X POST -d '{"image":"nginx"}' -H "Content-Type: application/json" http://localhost/containers/create
+curl --unix-socket /var/run/docker.sock -X POST  http://localhost/containers/a6cb8058fd3c0012411ebdb58ac474df33513dd248c7b42188f978d6b3ee6665/start
+   
+---
+
+# Add Docker's official GPG key:
+ apt-get update
+ apt-get install ca-certificates curl
+ install -m 0755 -d /etc/apt/keyrings
+ curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+ chmod a+r /etc/apt/keyrings/docker.asc
+
+# Add the repository to Apt sources:
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+  $(. /etc/os-release && echo "${UBUNTU_CODENAME:-$VERSION_CODENAME}") stable" | \
+   tee /etc/apt/sources.list.d/docker.list > /dev/null
+ apt-get update
+
+# install docker cli
+  apt-get install docker-ce-cli
+
+---
+
+# execucao via SDK dentro do container 
