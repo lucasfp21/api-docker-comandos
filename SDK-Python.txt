@@ -45,3 +45,12 @@ echo \
 ---
 
 # execucao via SDK dentro do container 
+
+---
+# docker DinD
+
+ docker container run -d --privileged docker:dind
+ docker exec -it <id> /bin/sh
+
+
+ 
